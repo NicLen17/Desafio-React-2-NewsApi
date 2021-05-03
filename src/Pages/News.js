@@ -12,7 +12,7 @@ export default function News() {
     useEffect(() => { 
         const getNews = async () => {
         const response = await axios.get(
-            `https://newsapi.org/v2/top-headlines?apiKey=bb4af6c6f5c34c9ea5feb50daa586299&category=${category}&country=${country}`
+            `https://newsapi.org/v2/top-headlines?apiKey=b87dd70e3ac44e3aa45d83ed16c8b6dd&category=${category}&country=${country}`
         );
         setArticles(response.data.articles);
     };
