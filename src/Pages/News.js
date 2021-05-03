@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Redirect } from 'react-router';
+// import { Redirect } from 'react-router';
 import './NwCss.css'
 import './Cards.css'
 
@@ -9,16 +9,16 @@ export default function News() {
     const [category, setCategory] = useState('entertainment');
     const [country, setCountry] = useState('ar');
 
-    useEffect(() => {
-        getNews();
-    }, [category]);
-
-    const getNews = async () => {
+    useEffect(() => { 
+        const getNews = async () => {
         const response = await axios.get(
-            `https://newsapi.org/v2/top-headlines?apiKey=b87dd70e3ac44e3aa45d83ed16c8b6dd&category=${category}&country=${country}`
+            `https://newsapi.org/v2/top-headlines?apiKey=bb4af6c6f5c34c9ea5feb50daa586299&category=${category}&country=${country}`
         );
         setArticles(response.data.articles);
     };
+        getNews();
+    }, [category, country]);
+
 
     const handleChange = (event) => {
         const { value } = event.target;
@@ -48,15 +48,15 @@ export default function News() {
                     <option value="general">General</option>
                 </select>
             </div>
+            <div className="flexcard">
             {articles.map((art) => (
-                <div className="flexcard">
-                    <div className=" card1" style={{ width: "18rem" }}>
+                    <div className="card1" style={{ width: "18rem" }}>
                         <div className="card-body">
                             <div className="imgcard">
                                 <img
                                     src={art.urlToImage}
                                     className="card-img-top"
-                                    alt="..."
+                                    alt="No disponible"
                                 /></div>
                             <h5 className="card-title">{art.title}</h5>
                             <br />
@@ -69,8 +69,8 @@ export default function News() {
                             </div>
                         </div>
                     </div>
-                </div>
             ))}
+            </div>
         </div>
     );
 }
